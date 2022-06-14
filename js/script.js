@@ -32,33 +32,22 @@ switch (userDifficulty){
         break;
     case '3':
         minesMaxRange = 49;
-        break;
-    // // debug case, per vittoria facile
-    // case '4':
-    //     minesMaxRange = 17;
-    //     break;
-    // // debug case, per vittoria facile        
-    // case '5':
-    //     minesMaxRange = 20;
-    // break;        
+        break;      
     default:
         minesMaxRange = 100;        
 }
 
 const bombs = bombsGeneration(numberOfBombs, minesMaxRange);
-console.log(...bombs);
 attempts = minesMaxRange - numberOfBombs;
 
 while(gameContinue){
     //utente inserisce un numero e lu metto nell'elenco dei tentativi, controllando che non abbia già inserito lo stesso valore
     do{
         userInput = parseInt(prompt('inserisci un numero'));
-        console.log('userInput: ',userInput);
     }while( userInputHistory.includes(userInput) || userInput > minesMaxRange || userInput <= 0 || isNaN(userInput));
     
     //metto il numero in uno storico
     userInputHistory.push(userInput);
-    console.log('history: ', ...userInputHistory);
     // se l'utente inserisce un numero bomba, perde 
     if(bombs.includes(userInput)){
         msg = 'Uh oh! hai beccato una mina!'
